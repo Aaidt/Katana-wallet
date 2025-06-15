@@ -1,4 +1,29 @@
+import { Keypair } from "@solana/web3.js"
+import nacl from "tweetnacl"
+import { generateMnemonic } from 'bip39'
+
 export function Sol() {
+
+    const keypair = Keypair.generate();
+    const publicKey = keypair.publicKey.toString();
+    const privateKey = keypair.secretKey
+
+    console.log(publicKey)
+    console.log(privateKey)
+
+    // const signature = nacl.sign.detached(message, privateKey)
+    // const result = nacl.sign.detached.verify(
+    //     message,
+    //     signature,
+    //     keypair.publicKey.toBytes()
+    // )
+
+    const mnemonic = generateMnemonic();
+    let phrases: string[] = []
+    for (let i = 0; i < 12; i++) {
+        phrases.push(mnemonic.split(" ")[i])
+    }
+
     return (
         <div className="flex flex-col gap-2 p-16">
             <div className="text-white font-bold text-4xl">
@@ -19,7 +44,22 @@ export function Sol() {
                 </button>
             </div>
 
-            <div className="text-white text-sm"></div>
+            <div className="mt-10 p-6 border border-gray-400 rounded-md ">
+                <h1 className="font-medium text-3xl ">Your secret phrase</h1>
+
+                <div className="grid grid-cols-4 grid-rows-3 gap-2 pt-6">
+                    {phrases.map((phrase, index) => {
+                        return (
+                            <div key={index} className="border border-gray-400/20 bg-gray-400/10 text-center
+                            text-md font-medium gap-2 rounded-md p-5 cursor-pointer hover:bg-gray-500/30 duration-200 transition-all">
+                                {phrase}
+                            </div>
+                        )
+                    })}
+                </div>
+
+            </div>
+
         </div>
     );
 }

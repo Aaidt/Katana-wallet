@@ -13,13 +13,14 @@ export default function Home() {
     <div>
 
       <div className="flex mx-15 justify-between items-center pt-10">
-        <div className="text-3xl font-bold flex items-center gap-2">
+        <div
+          onClick={() => {
+            setSol(null)
+            setEth(null)
+          }}
+          className="text-3xl font-bold flex items-center gap-2 cursor-pointer">
           <Swords
-            onClick={() => {
-              setSol(null)
-              setEth(null)
-            }}
-            className="w-10 h-10 cursor-pointer" /> Katana Wallet
+            className="w-10 h-10" /> Katana Wallet
         </div>
       </div>
 
