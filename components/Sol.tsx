@@ -10,7 +10,8 @@ export function Sol() {
             </div>
 
             <div className="flex">
-                <input type="text" className="border border-gray-700 w-240 text-white rounded-md p-2" placeholder="Enter your secret recovery phrase" />
+                <input type="text" className="border border-gray-700 w-240 text-white rounded-md p-2"
+                    placeholder="Enter your secret recovery phrase (or leave blank to generate)" />
                 <button
                     className="bg-white ml-4 rounded-md duration-200 transition-all px-7 py-3 text-md text-black hover:bg-white/80"
                 >
