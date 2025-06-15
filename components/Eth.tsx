@@ -1,16 +1,23 @@
+import nacl from "tweetnacl";
+import { generateMnemonic, mnemonicToSeedSync } from "bip39";
+import { derivePath } from "ed25519-hd-key";
 import { ethers } from "ethers";
-import { generateMnemonic } from 'bip39'
 
 
 export async function Eth() {
-
+    
     const wallet = ethers.Wallet.createRandom();
-
     const publicKey = wallet.address;
-    const privateKey = wallet.privateKey;
+    // const privateKey = wallet.privateKey;
 
-    console.log("Public Key (Address):", publicKey);
-    console.log("Private Key:", privateKey);
+    // const mnemonic = generateMnemonic();
+    // const seed = mnemonicToSeedSync(mnemonic);
+    // for (let i = 0; i < 4; i++) {
+    //   const path = `m/44'/501'/${i}'/0'`; // This is the derivation path
+    //   const derivedSeed = derivePath(path, seed.toString("hex")).key;
+    //   const secret = nacl.sign.keyPair.fromSeed(derivedSeed).secretKey;
+    //     console.log(ethers.Wallet.fromSecretKey(secret).publicKey.toBase58());
+    // }
 
     const message = "hello world";
 
