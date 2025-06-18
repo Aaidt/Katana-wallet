@@ -1,6 +1,6 @@
 "use client"
 
-import { Swords, Sun, Moon } from "lucide-react"
+import { Swords } from "lucide-react"
 import { useState } from 'react'
 import { Sol } from "@/components/Sol"
 import { Eth } from "@/components/Eth"
@@ -25,7 +25,7 @@ export default function Home() {
       </div>
 
       <div className="pt-20 pl-15 font-bold text-5xl ">Katana supports multiple blockchains</div>
-      <div className="pl-16 text-gray-400 pt-3 font-bold text-2xl">Choose a blockchain to get started with.</div>
+      <div className="pl-16 text-gray-400 pt-3 font-thin text-lg">Choose a blockchain to get started with.</div>
 
       <div className="flex pl-16 pt-3 gap-2 ">
         <button
@@ -48,8 +48,8 @@ export default function Home() {
         <Eth />
       ) : (
         <div>
-          <div className="text-gray-400 flex justify-center font-bold text-2xl p-16">
-            Choose a blockchain to get started with.
+          <div className="text-gray-400 flex justify-center font-thin text-lg p-16 pt-20">
+            Start by selecting one blockchain.
           </div>
         </div>
       )}
