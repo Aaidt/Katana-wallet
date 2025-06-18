@@ -2,11 +2,13 @@ import { motion } from 'framer-motion'
 import { Keypair } from "@solana/web3.js"
 import nacl from "tweetnacl"
 import { generateMnemonic } from 'bip39'
+import { Eye, EyeOff } from "lucide-react"
 import { useState } from "react"
 
 export function Sol() {
 
     const [generate, setGenerate] = useState(false)
+    const [isVisible, setIsVisible] = useState(true)
 
     const keypair = Keypair.generate();
     const publicKey = keypair.publicKey.toString();
@@ -28,14 +30,19 @@ export function Sol() {
         phrases.push(mnemonic.split(" ")[i])
     }
 
+    const initial = { opacity: 0, y: -40 }
+    const whileInView = { opacity: 1, y: 0 }
+    const viewport = { once: true }
+    const transition = { duration: 0.4 }
+
     return (
         <div>
             <div className="flex flex-col gap-2 p-16">
                 <motion.div
-                    initial={{ opacity: 0, y: -40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4 }}
+                    initial={initial}
+                    whileInView={whileInView}
+                    viewport={viewport}
+                    transition={transition}
                 >
                     <div className="text-white font-bold text-4xl">
                         Secret Recovery Phrase
@@ -66,24 +73,46 @@ export function Sol() {
 
                 {generate && (
                     <motion.div
-                        initial={{ opacity: 0, y: -80 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4 }}
+                        initial={initial}
+                        whileInView={whileInView}
+                        viewport={viewport}
+                        transition={transition}
                     >
                         <div className="mt-10 p-10 border border-gray-400/30 rounded-md ">
-                            <h1 className="font-medium text-3xl ">Your secret phrase</h1>
-
-                            <div className="grid grid-cols-4 grid-rows-3 gap-2 pt-6">
-                                {phrases.map((phrase, index) => {
-                                    return (
-                                        <div key={index} className="border border-gray-400/10 bg-gray-400/10 text-center
-                            text-md font-medium gap-2 rounded-md p-5 cursor-pointer hover:bg-gray-500/30 duration-200 transition-all">
-                                            {phrase}
-                                        </div>
-                                    )
-                                })}
+                            <div className="flex items-center justify-between">
+                                <h1 className="font-medium text-3xl ">Your secret phrase</h1>
+                                {isVisible ? <Eye
+                                    onClick={() => {
+                                        setIsVisible(false)
+                                    }}
+                                /> :
+                                    <EyeOff
+                                        onClick={() => {
+                                            setIsVisible(true)
+                                        }}
+                                    />}
                             </div>
+
+                            {isVisible ? (
+                                <motion.div
+                                    initial={initial}
+                                    whileInView={whileInView}
+                                    viewport={viewport}
+                                    transition={transition}
+                                >
+                                    <div className="grid grid-cols-4 grid-rows-3 gap-2 pt-6">
+                                        {phrases.map((phrase, index) => {
+                                            return (
+                                                <div key={index} className="border border-gray-400/10 bg-gray-400/10 text-center
+                            text-md font-medium gap-2 rounded-md p-5 cursor-pointer hover:bg-gray-500/30 duration-200 transition-all">
+                                                    {phrase}
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </motion.div>
+                            ) : null
+                            }
                         </div>
 
                         <div className=" pt-10 flex justify-between">
