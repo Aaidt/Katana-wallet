@@ -4,6 +4,7 @@ import { Swords } from "lucide-react"
 import { useState } from 'react'
 import { Sol } from "@/components/Sol"
 import { Eth } from "@/components/Eth"
+import { Footer } from "@/components/Footer"
 
 export default function Home() {
   const [sol, setSol] = useState<boolean | null>(null)
@@ -55,6 +56,11 @@ export default function Home() {
       )}
 
 
+      <Footer />
+
+      
     </div>
+
+
   )
 }
