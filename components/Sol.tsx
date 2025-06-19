@@ -6,29 +6,22 @@ import { generateMnemonic } from 'bip39'
 import { Eye, EyeOff } from "lucide-react"
 import { useState } from "react"
 
+const mnemonic = generateMnemonic();
+let phrases: string[] = []
+mnemonic.split(" ").map((phrase) => {
+    phrases.push(phrase)
+})
+
 export function Sol() {
 
     const [generate, setGenerate] = useState<boolean>(false)
     const [isVisible, setIsVisible] = useState<boolean>(false)
     const [wallets, setWallets] = useState<{ id: number, keypair: Keypair }[]>([])
 
-    // const signature = nacl.sign.detached(message, privateKey)
-    // const result = nacl.sign.detached.verify(
-    //     message,
-    //     signature,
-    //     keypair.publicKey.toBytes()
-    // )
-
-    const mnemonic = generateMnemonic();
-    let phrases: string[] = []
-    mnemonic.split(" ").map((phrase) => {
-        phrases.push(phrase)
-    })
-
     const initial = { opacity: 0, y: -40 }
     const whileInView = { opacity: 1, y: 0 }
     const viewport = { once: true }
-    const transition = { duration: 0.4 }
+    const transition = { duration: 0.2 }
 
     return (
         <div>
