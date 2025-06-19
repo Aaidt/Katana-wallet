@@ -8,7 +8,7 @@ import { useState } from "react"
 export function Sol() {
 
     const [generate, setGenerate] = useState(false)
-    const [isVisible, setIsVisible] = useState(true)
+    const [isVisible, setIsVisible] = useState(false)
 
     const keypair = Keypair.generate();
     const publicKey = keypair.publicKey.toString();
@@ -26,9 +26,9 @@ export function Sol() {
 
     const mnemonic = generateMnemonic();
     let phrases: string[] = []
-    for (let i = 0; i < 12; i++) {
-        phrases.push(mnemonic.split(" ")[i])
-    }
+    mnemonic.split(" ").map((phrase) => {
+        phrases.push(phrase)
+    })
 
     const initial = { opacity: 0, y: -40 }
     const whileInView = { opacity: 1, y: 0 }
@@ -54,7 +54,7 @@ export function Sol() {
 
                     <div className="flex items-center">
                         <div>
-                            <input type="text" className="border border-gray-700 w-240 text-white rounded-md p-2"
+                            <input type="text" className="border border-gray-700 w-240 text-white font-thin rounded-md p-2"
                                 placeholder="Enter your secret recovery phrase (or leave blank to generate)" />
                         </div>
 
