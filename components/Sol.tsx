@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Keypair } from "@solana/web3.js"
 import { Wallet } from "@/components/Wallet"
 import nacl from "tweetnacl"
 import { generateMnemonic } from 'bip39'
@@ -9,7 +10,7 @@ export function Sol() {
 
     const [generate, setGenerate] = useState<boolean>(false)
     const [isVisible, setIsVisible] = useState<boolean>(false)
-    const [n, setN] = useState<number | null>(null)
+    const [wallets, setWallets] = useState<{ id: number, keypair: Keypair }[]>([])
 
     // const signature = nacl.sign.detached(message, privateKey)
     // const result = nacl.sign.detached.verify(
@@ -118,26 +119,26 @@ export function Sol() {
                                 <button
                                     className="bg-white ml-4 text-sm rounded-md duration-200 transition-all px-4 py-3 text-md text-black hover:bg-white/80"
                                     onClick={() => {
-                                        if (n === null) {
-                                            setN(1)
-                                        } else {
-                                            setN(n + 1)
-                                        }
+                                        setWallets(prev => [
+                                            ...prev,
+                                            { id: prev.length + 1, keypair: Keypair.generate() }
+                                        ])
                                     }}
                                 >Add wallet
                                 </button>
                                 <button
                                     className="bg-red-900 text-white text-sm ml-4 rounded-md duration-200 transition-all px-4 py-3 text-md text-black hover:bg-red-900/80"
                                     onClick={() => {
-                                        setN(null)
+                                        setWallets([])
                                     }}
                                 >Clear wallets</button>
                             </div>
                         </div>
 
 
-                        <Wallet n={n} />
-
+                        {wallets.map((wallet) => (
+                            <Wallet key={wallet.id} n={wallet.id} keypair={wallet.keypair} />
+                        ))}
 
                     </motion.div >
 

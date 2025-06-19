@@ -4,10 +4,6 @@ import bs58 from 'bs58'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-const keypair = Keypair.generate();
-const publicKey = keypair.publicKey.toString();
-const privateKey = keypair.secretKey;
-const privateKeyBase58 = bs58.encode(privateKey)
 
 
 const initial = { opacity: 0, y: -40 }
@@ -15,7 +11,10 @@ const whileInView = { opacity: 1, y: 0 }
 const viewport = { once: true }
 const transition = { duration: 0.4 }
 
-export function Wallet({ n }: { n: number | null }) {
+export function Wallet({ n, keypair }: { n: number | null, keypair: Keypair }) {
+    const publicKey = keypair.publicKey.toString();
+    const privateKey = keypair.secretKey;
+    const privateKeyBase58 = bs58.encode(privateKey)
 
     const [isVisible, setIsVisible] = useState(false)
 
