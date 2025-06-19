@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Keypair } from "@solana/web3.js"
+import { Wallet } from "@/components/Wallet"
 import nacl from "tweetnacl"
 import { generateMnemonic } from 'bip39'
 import { Eye, EyeOff } from "lucide-react"
@@ -7,15 +7,9 @@ import { useState } from "react"
 
 export function Sol() {
 
-    const [generate, setGenerate] = useState(false)
-    const [isVisible, setIsVisible] = useState(false)
-
-    const keypair = Keypair.generate();
-    const publicKey = keypair.publicKey.toString();
-    const privateKey = keypair.secretKey
-
-    console.log(publicKey)
-    console.log(privateKey)
+    const [generate, setGenerate] = useState<boolean>(false)
+    const [isVisible, setIsVisible] = useState<boolean>(false)
+    const [n, setN] = useState<number | null>(null)
 
     // const signature = nacl.sign.detached(message, privateKey)
     // const result = nacl.sign.detached.verify(
@@ -116,19 +110,35 @@ export function Sol() {
                         </div>
 
                         <div className=" pt-10 flex justify-between">
-                            <div className="text-4xl">
+                            <div className="text-4xl font-bold">
                                 Solana wallet
                             </div>
 
                             <div>
                                 <button
-                                    className="bg-white ml-4 rounded-md duration-200 transition-all px-7 py-3 text-md text-black hover:bg-white/80"
-                                >Add wallet</button>
+                                    className="bg-white ml-4 text-sm rounded-md duration-200 transition-all px-4 py-3 text-md text-black hover:bg-white/80"
+                                    onClick={() => {
+                                        if (n === null) {
+                                            setN(1)
+                                        } else {
+                                            setN(n + 1)
+                                        }
+                                    }}
+                                >Add wallet
+                                </button>
                                 <button
-                                    className="bg-red-900 text-white ml-4 rounded-md duration-200 transition-all px-7 py-3 text-md text-black hover:bg-red-900/80"
-                                >Delete wallet</button>
+                                    className="bg-red-900 text-white text-sm ml-4 rounded-md duration-200 transition-all px-4 py-3 text-md text-black hover:bg-red-900/80"
+                                    onClick={() => {
+                                        setN(null)
+                                    }}
+                                >Clear wallets</button>
                             </div>
                         </div>
+
+
+                        <Wallet n={n} />
+
+
                     </motion.div >
 
                 )}
