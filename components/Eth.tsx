@@ -19,16 +19,6 @@ export async function Eth() {
     //     console.log(ethers.Wallet.fromSecretKey(secret).publicKey.toBase58());
     // }
 
-    const message = "hello world";
-
-    const signature = await wallet.signMessage(message);
-    console.log("Signature:", signature);
-
-    const recoveredAddress = ethers.verifyMessage(message, signature);
-
-    console.log("Recovered Address:", recoveredAddress);
-    console.log("Signature is valid:", recoveredAddress === publicKey);
-
     const mnemonic = generateMnemonic();
     let phrases: string[] = []
     for (let i = 0; i < 12; i++) {

@@ -2,9 +2,10 @@ import { motion } from 'framer-motion'
 import { Keypair } from "@solana/web3.js"
 import { Wallet } from "@/components/Wallet"
 import nacl from "tweetnacl"
-import { generateMnemonic } from 'bip39'
+import { generateMnemonic, mnemonicToSeedSync } from 'bip39'
 import { Eye, EyeOff } from "lucide-react"
 import { useState } from "react"
+import { derivePath } from "ed25519-hd-key";
 
 const mnemonic = generateMnemonic();
 let phrases: string[] = []
@@ -12,6 +13,15 @@ mnemonic.split(" ").map((phrase) => {
     phrases.push(phrase)
 })
 
+const seed = mnemonicToSeedSync(mnemonic)
+for (let i = 0; i < 4; i++) {
+    const path = `m/44'/501'/${i}'/0'`; // This is the derivation path
+    const derivedSeed = derivePath(path, seed.toString("hex")).key;
+    const secret = nacl.sign.keyPair.fromSeed(derivedSeed).secretKey;
+    console.log(Keypair.fromSecretKey(secret).publicKey.toBase58());
+  }
+  
+  
 export function Sol() {
 
     const [generate, setGenerate] = useState<boolean>(false)
