@@ -19,9 +19,9 @@ for (let i = 0; i < 4; i++) {
     const derivedSeed = derivePath(path, seed.toString("hex")).key;
     const secret = nacl.sign.keyPair.fromSeed(derivedSeed).secretKey;
     console.log(Keypair.fromSecretKey(secret).publicKey.toBase58());
-  }
-  
-  
+}
+
+
 export function Sol() {
 
     const [generate, setGenerate] = useState<boolean>(false)
@@ -58,7 +58,7 @@ export function Sol() {
 
                         <div>
                             <button
-                                className="bg-white ml-4 rounded-md duration-200 transition-all px-7 py-3 text-md text-black hover:bg-white/80"
+                                className="bg-white ml-4 cursor-pointer rounded-md duration-200 transition-all px-7 py-3 text-md text-black hover:bg-white/80"
                                 onClick={() => {
                                     setGenerate(true)
                                 }}
@@ -82,12 +82,12 @@ export function Sol() {
                                 {isVisible ? <Eye
                                     onClick={() => {
                                         setIsVisible(false)
-                                    }}
+                                    }} className='cursor-pointer'
                                 /> :
                                     <EyeOff
                                         onClick={() => {
                                             setIsVisible(true)
-                                        }}
+                                        }} className='cursor-pointer'
                                     />}
                             </div>
 
@@ -102,7 +102,7 @@ export function Sol() {
                                         {phrases.map((phrase, index) => {
                                             return (
                                                 <div key={index} className="border border-gray-400/10 bg-gray-400/10 text-center
-                            text-md font-medium gap-2 rounded-md p-5 cursor-pointer hover:bg-gray-500/30 duration-200 transition-all">
+                            text-md font-medium gap-2 rounded-md p-5 hover:bg-gray-500/30 duration-200 transition-all">
                                                     {phrase}
                                                 </div>
                                             )
@@ -120,7 +120,7 @@ export function Sol() {
 
                             <div>
                                 <button
-                                    className="bg-white ml-4 text-sm rounded-md duration-200 transition-all px-4 py-3 text-md text-black hover:bg-white/80"
+                                    className="bg-white ml-4 cursor-pointer text-sm rounded-md duration-200 transition-all px-4 py-3 text-md text-black hover:bg-white/80"
                                     onClick={() => {
                                         setWallets(prev => [
                                             ...prev,
@@ -130,7 +130,7 @@ export function Sol() {
                                 >Add wallet
                                 </button>
                                 <button
-                                    className="bg-red-900 text-white text-sm ml-4 rounded-md duration-200 transition-all px-4 py-3 text-md text-black hover:bg-red-900/80"
+                                    className="bg-red-900 cursor-pointer text-white text-sm ml-4 rounded-md duration-200 transition-all px-4 py-3 text-md text-black hover:bg-red-900/80"
                                     onClick={() => {
                                         setWallets([])
                                     }}
