@@ -1,38 +1,17 @@
 import Header from "@/components/Header";
+import { WalletCard } from "@/components/WalletCard";
 
 export default function Wallet() {
     return (
         <div>
             <Header />
 
-            <div className="rounded-xl bg-card text-card-foreground shadow border-2">
-                <div className="flex flex-col space-y-1.5 p-6">
-                    <div className="flex items-center justify-between">
-                        <div className="space-y-1">
-                            <div className="font-semibold leading-none tracking-tight">Wallet Overview</div>
-                            <div className="text-sm text-muted-foreground">Manage your tokens and transactions</div>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-wallet w-8 h-8 text-primary">
-                            <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path>
-                            <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path>
-                        </svg>
-
-                        <div className="p-6 pt-0">
-                            <div className="flex items-center justify-between p-4 border rounded-lg bg-card">
-                                <div className="space-y-1">
-                                    <p className="text-sm font-medium leading-none">Total Balance</p>
-                                    <p className="text-2xl font-bold"> 10 SOL</p>
-                                </div>
-                                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors
-                         focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 
-                         [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 
-                         h-9 px-4 py-2">Get Airdrop</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div className="pt-20 m-8">
+                <WalletCard />
             </div>
-            
+
+
         </div>
+
     );
 }
