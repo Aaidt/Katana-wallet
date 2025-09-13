@@ -20,8 +20,8 @@ export function WalletCard() {
         getBalance();
     }, [wallet.publicKey, connection])
 
-    async function refreshBalance(){
-        if(!wallet.publicKey) return 
+    async function refreshBalance() {
+        if (!wallet.publicKey) return
 
         const newBalance = await connection.getBalance(wallet.publicKey);
         setBalance(newBalance);
@@ -29,12 +29,15 @@ export function WalletCard() {
 
 
     return <div>
-        <div className="mb-6">
-            <h2 className="text-3xl font-bold tracking-tight">Wallet Dashboard</h2>
-            <p className="text-muted-foreground">
-                View your balances, manage tokens, and request airdrops easily.
+        <div className="mb-10 text-center">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-blue-900 to-pink-600 bg-clip-text text-transparent">
+                Katana Wallet
+            </h1>
+            <p className="mt-2 text-lg text-muted-foreground">
+                Securely manage your Solana assets on Devnet & Mainnet
             </p>
         </div>
+
 
 
         <div className="rounded-xl bg-card text-card-foreground shadow border-2">
