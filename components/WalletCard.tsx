@@ -9,7 +9,7 @@ export function WalletCard() {
     const wallet = useWallet();
 
     const [balance, setBalance] = useState<number>(0);
-    
+
     useEffect(() => {
         async function getBalance() {
             if (wallet.publicKey) {
@@ -19,6 +19,13 @@ export function WalletCard() {
         }
         getBalance();
     }, [wallet.publicKey, connection])
+
+    async function refreshBalance(){
+        if(!wallet.publicKey) return 
+
+        const newBalance = await connection.getBalance(wallet.publicKey);
+        setBalance(newBalance);
+    }
 
 
     return <div>
@@ -66,10 +73,22 @@ export function WalletCard() {
                     </div>
 
                     <button
-                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors
+                        className="cursor-pointer nline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors
                         focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50
                         [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 
                         bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2"
+                        onClick={async () => {
+                            if (wallet.publicKey) {
+                                try {
+                                    await connection.requestAirdrop(wallet.publicKey, 5 * 1000000000)
+                                    alert("Recieved an airdrop for 5SOL!!!");
+                                    await refreshBalance()
+                                } catch (err) {
+                                    console.log("Error while recieving airdrop: " + err);
+                                }
+
+                            }
+                        }}
                     >
                         Get Airdrop
                     </button>
