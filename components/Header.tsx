@@ -27,7 +27,7 @@ export default function Header() {
         <div className="flex items-center space-x-4">
 
 
-          <div className="flex items-center justify-center justify-between bg-background text-foreground text-sm px-3 py-2 rounded-md border border-foreground/20">
+          <div className="flex items-center justify-center justify-between bg-background text-foreground text-sm px-3 py-2 rounded-sm border border-foreground/20">
             <span className="relative flex h-2 w-2 mr-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400  opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -37,12 +37,12 @@ export default function Header() {
           </div>
 
 
-          <WalletMultiButton className=" cursor-pointer 
-            !bg-transparent 
-            !text-foreground 
-            !border 
-            !border-foreground/20 
-            hover:!bg-foreground/10"/>
+          <WalletMultiButton style={{
+            backgroundColor: "transparent",
+            color: "var(--foreground)",
+            fontSize: '0.876rem',
+            padding: "0.25rem 1rem"
+          }} />
 
           <Button
             variant="ghost"
