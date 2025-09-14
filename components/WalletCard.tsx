@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { SquareArrowDownLeft, Send } from "lucide-react";
 import { SendModal } from "./SendModal";
+import Image from "next/image";
 
 interface axiosResponse {
     solana: {
@@ -68,61 +69,60 @@ export function WalletCard() {
                 </p>
             </div>
 
-            <div className="rounded-xl bg-transparent text-card-foreground shadow border border-foreground/30">
-                <div className="flex items-center justify-between p-6">
-                    <div className="space-y-1">
-                        <div className="font-semibold leading-none tracking-tight">
-                            Wallet Overview
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                            Manage your tokens and transactions
-                        </div>
+            <div className="flex flex-col justify-center items-center">
+                <div className="w-[380px] rounded-2xl p-6 bg-white/80 dark:bg-zinc-900/80 
+                border border-foreground/40 dark:border-foreground/20 shadow-xl backdrop-blur-md text-center space-y-6">
+
+                    <div className="flex flex-col items-center gap-3">
+                        <Image
+                            src="https://i.pinimg.com/1200x/6f/65/ac/6f65ac68dee4841a75026411fe8e09a8.jpg"
+                            alt="Solana Logo"
+                            width={48}
+                            height={48}
+                            className="rounded-full "
+                        />
+                        <p className="text-3xl font-bold text-foreground">
+                            {(balance / 1e9).toFixed(4)} <span className="text-purple-400">SOL</span>
+                        </p>
+                        <p className="text-lg text-muted-foreground">
+                            ≈ ${usd.toFixed(2)} USD
+                        </p>
                     </div>
-                </div>
 
-                <div className="p-6 pt-0">
-                    <div className="flex items-center justify-between p-4 border border-foreground/20 rounded-lg bg-transparent">
-                        <div className="space-y-1">
-                            <p className="text-sm font-medium leading-none">Total Balance</p>
-                            <p className="text-2xl font-bold">{(balance / 1e9).toFixed(4)} SOL</p>
-                            <p className="text-lg text-muted-foreground">
-                                ≈ ${usd.toFixed(2)} USD
-                            </p>
-                        </div>
+                    <div className="h-px w-full bg-foreground/20" />
 
-                        <div className="flex gap-6">
-                            <button
-                                className="cursor-pointer flex items-center justify-center gap-2 text-sm rounded bg-foreground 
-                            hover:bg-foreground/90 px-4 py-2 text-background"
-                            onClick={() => {
-                                setModalOpen(true);
-                            }}>
-                                Send SOL<Send size={17} strokeWidth="2" />
-                            </button>
+                    <div className="flex gap-4 w-full">
+                        <button
+                            className="flex-1 cursor-pointer flex items-center justify-center gap-2 text-sm font-medium 
+                                rounded-md bg-foreground hover:opacity-90 px-4 py-3 text-background shadow-lg transition"
+                            onClick={() => setModalOpen(true)}
+                        >
+                            <Send size={18} /> Send
+                        </button>
 
-                            <button
-                                className="cursor-pointer flex items-center justify-center gap-2 text-sm rounded bg-foreground 
-                            hover:bg-foreground/90 px-4 py-2 text-background "
-                                onClick={async () => {
-                                    if (wallet.publicKey) {
-                                        try {
-                                            await connection.requestAirdrop(wallet.publicKey, 5 * 1e9)
-                                            alert("Recieved an airdrop for 5SOL!!!");
-                                            await getBalance()
-                                        } catch (err) {
-                                            alert("Either you hit the max limit for airdrops today or the faucet has run dry.")
-                                            console.log("Error while recieving airdrop: " + err);
-                                        }
+                        <button
+                            className="flex-1 cursor-pointer flex items-center justify-center gap-2 text-sm font-medium 
+                                rounded-md bg-foreground hover:opacity-90 px-4 py-3 text-background shadow-lg transition"
+                            onClick={async () => {
+                                if (wallet.publicKey) {
+                                    try {
+                                        await connection.requestAirdrop(wallet.publicKey, 5 * 1e9);
+                                        alert("Recieved an airdrop for 5SOL!!!");
+                                        await getBalance();
+                                    } catch (err) {
+                                        alert("Either you hit the max limit for airdrops today or the faucet has run dry.");
+                                        console.log("Error while recieving airdrop: " + err);
                                     }
-                                }}
-                            >
-                                Get Airdrop<SquareArrowDownLeft size={18} strokeWidth="2" />
-                            </button>
-                        </div>
-
+                                }
+                            }}
+                        >
+                            <SquareArrowDownLeft size={18} /> Airdrop
+                        </button>
                     </div>
                 </div>
             </div>
+
+
         </div>
     )
 }

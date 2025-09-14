@@ -1,7 +1,6 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
 import { Moon, Sun } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
@@ -11,7 +10,7 @@ export default function Header() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <header className="w-full bg-background backdrop-blur-md">
+    <header className="fixed top-0 left-0 w-full bg-background backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
 
         <div className="flex items-center space-x-2">
@@ -20,6 +19,7 @@ export default function Header() {
             alt="Solana Logo"
             width={28}
             height={28}
+            className="rounded-full"
           />
           <span className="font-bold text-lg tracking-tight">Katana Wallet</span>
         </div>
