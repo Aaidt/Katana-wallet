@@ -15,8 +15,6 @@ export default function Home() {
             </div> 
          </div>
 
-         <div className="pt-20 pl-15 font-bold text-5xl ">Katana supports multiple blockchains</div>
-         <div className="pl-16 pt-3 font-thin text-lg">Choose a blockchain to get started with.</div>
 
          <Sol />
 
