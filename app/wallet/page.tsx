@@ -1,17 +1,25 @@
-import Header from "@/components/Header";
-import { WalletCard } from "@/components/WalletCard";
+"use client"
 
-export default function Wallet() {
-    return (
-        <div>
-            <Header />
+import { Swords } from "lucide-react"
+import { Sol } from "@/components/Sol"
 
-            <div className="pt-20 m-8">
-                <WalletCard />
-            </div>
+export default function Home() {
+
+   return (
+      <div className="bg-black min-h-screen text-white">
+
+         <div className="flex mx-15 justify-between items-center pt-10">
+            <div className="text-3xl font-bold flex items-center gap-2 cursor-pointer">
+               <Swords
+                  className="w-10 h-10" /> Katana Wallet
+            </div> 
+         </div>
 
 
-        </div>
+         <Sol />
 
-    );
+      </div>
+
+
+   )
 }

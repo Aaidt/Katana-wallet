@@ -97,7 +97,7 @@ export function WalletCard() {
                             onClick={() => {
                                 setModalOpen(true);
                             }}>
-                                Send SOL<Send size={20} strokeWidth="1.6" />
+                                Send SOL<Send size={17} strokeWidth="2" />
                             </button>
 
                             <button
@@ -116,7 +116,7 @@ export function WalletCard() {
                                     }
                                 }}
                             >
-                                Get Airdrop<SquareArrowDownLeft strokeWidth="1.4" />
+                                Get Airdrop<SquareArrowDownLeft size={18} strokeWidth="2" />
                             </button>
                         </div>
 
