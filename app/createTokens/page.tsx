@@ -26,7 +26,7 @@ export default function createTokens() {
                 lamports,
                 programId: TOKEN_PROGRAM_ID
             }),
-            createInitializeMint2Instruction(mintKeyPair.publicKey, 9, wallet.publicKey!, wallet.publicKey, TOKEN_PROGRAM_ID)
+            createInitializeMint2Instruction(mintKeyPair.publicKey, 9, wallet.publicKey!, wallet.publicKey, TOKEN_PROGRAM_ID)   
         );
         transaction.feePayer = wallet.publicKey!;
         transaction.recentBlockhash = (await connection.getLatestBlockhash()).blockhash
