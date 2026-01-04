@@ -41,6 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+
       <body
         className={roboto.className}
       >
@@ -58,6 +59,9 @@ export default function RootLayout({
             </WalletModalProvider>
           </WalletProvider>
         </ConnectionProvider>
+        <a className="fixed bottom-4 right-4 font-bold text-black" href="https://www.buymeacoffee.com/codexbuildd">
+          <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=codexbuildd&button_colour=BD5FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" />
+        </a>
 
       </body>
     </html>
