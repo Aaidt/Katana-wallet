@@ -61,11 +61,11 @@ export function SendModal({
     return (
         <div
             onClick={() => setOpen(false)}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex justify-center items-center"
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex justify-center items-center p-4 transition-all duration-300"
         >
             <div
                 onClick={(e) => e.stopPropagation()}
-                className="relative bg-white dark:bg-zinc-900 w-[420px] rounded-2xl shadow-2xl p-8 flex flex-col gap-6 text-foreground"
+                className="relative w-[420px] bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xl rounded-3xl shadow-2xl p-8 flex flex-col gap-6 text-foreground border border-white/20 dark:border-white/10"
             >
                 <button
                     onClick={() => setOpen(false)}

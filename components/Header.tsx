@@ -10,7 +10,7 @@ export default function Header() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-background backdrop-blur-md">
+    <header className="fixed top-0 left-0 w-full bg-white/70 dark:bg-black/70 backdrop-blur-xl border-b border-black/5 dark:border-white/5 z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
 
         <div className="flex items-center space-x-2">
@@ -27,13 +27,12 @@ export default function Header() {
         <div className="flex items-center space-x-4">
 
 
-          <div className="flex items-center justify-center justify-between bg-background text-foreground text-sm px-3 py-2 rounded-sm border border-foreground/20">
-            <span className="relative flex h-2 w-2 mr-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400  opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          <div className="flex items-center gap-2 bg-neutral-100 dark:bg-neutral-800 text-foreground text-xs font-medium px-3 py-1.5 rounded-full border border-black/5 dark:border-white/10 shadow-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-
-            Devnet
+            <span>Devnet</span>
           </div>
 
 
@@ -44,18 +43,6 @@ export default function Header() {
             padding: "0.25rem 1rem"
           }} />
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="cursor-pointer"
-          >
-            {theme === "light" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
         </div>
       </div>
     </header>
